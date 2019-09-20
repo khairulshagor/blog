@@ -7,6 +7,7 @@
     <title>AdminLTE 3 | Blank Page</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
@@ -15,7 +16,11 @@
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
         <!-- Left navbar links -->
-
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+            </li>
+        </ul>
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <!-- Messages Dropdown Menu -->
@@ -27,7 +32,11 @@
                     <span class="badge badge-warning navbar-badge">Profile</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item dropdown-footer">Logout</a>
+                    <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </li>
         </ul>
@@ -42,20 +51,12 @@
                  alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">{{Auth::user()->name}}</span>
         </a>
 
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Sidebar user (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
-                </div>
-            </div>
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
@@ -430,5 +431,6 @@
 </div>
 <!-- ./wrapper -->
 
+<script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>
