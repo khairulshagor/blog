@@ -1,0 +1,2 @@
+<?php echo $name;?>
+<?php echo $age;?>
